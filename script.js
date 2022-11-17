@@ -1,5 +1,12 @@
-function getWeather() {
-  fetch('https://api.openweathermap.org/data/2.5/weather?q=London&APPID=f31493932872d45dd431ce61b5a7cc79&units=metric', {mode: 'cors'})
+const form = document.querySelector('form');
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  getWeather(e.target[0].value);
+})
+
+function getWeather(city) {
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=f31493932872d45dd431ce61b5a7cc79&units=metric`, {mode: 'cors'})
   .then((response) => {
     return response.json();
   })
@@ -23,5 +30,3 @@ function sortData(data){
 
   return sortedData;
 }
-
-getWeather();
